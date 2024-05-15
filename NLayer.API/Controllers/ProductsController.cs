@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations.Operations.Builders;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using NLayer.Core.DTOs;
 using NLayer.Core.Models;
@@ -15,11 +16,19 @@ namespace NLayer.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IService<Product> _service;
+        private readonly IProductService _productService;
 
-        public ProductsController(IMapper mapper, IService<Product> service)
+        public ProductsController(IMapper mapper, IService<Product> service, IProductService productService)
         {
             _mapper = mapper;
             _service = service;
+            _productService = productService;
+        }
+
+        [HttpGet("[GetProdutcsWithCategory]")]
+        public async Task<IActionResult> GetProdutcsWithCategory() 
+        {
+            return CreateActionResult(await _productService.GetProductsWithCategory());
         }
 
         [HttpGet]
