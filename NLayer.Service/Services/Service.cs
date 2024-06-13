@@ -3,12 +3,7 @@ using NLayer.Core.Repositories;
 using NLayer.Core.Services;
 using NLayer.Core.UnitOfWorks;
 using NLayer.Service.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NLayer.Service.Services
 {
@@ -46,11 +41,11 @@ namespace NLayer.Service.Services
         {
             return await _repository.GetAll().ToListAsync();
         }
-      
+
         public async Task<T> GetByIdAsync(int id)
         {
-            var hasProduct =await _repository.GetByIdAsync(id);
-            if(hasProduct==null)
+            var hasProduct = await _repository.GetByIdAsync(id);
+            if (hasProduct == null)
             {
                 throw new NotFoundExcepiton($"{typeof(T).Name} ({id}) not found");
             }
@@ -77,9 +72,9 @@ namespace NLayer.Service.Services
         }
 
         public IQueryable<T> Where(Expression<Func<T, bool>> expression)
-            {
-                return _repository.Where(expression);
-            }
+        {
+            return _repository.Where(expression);
+        }
 
         Task IService<T>.AddRangeAsync(IEnumerable<T> entities)
         {
@@ -91,4 +86,4 @@ namespace NLayer.Service.Services
             throw new NotImplementedException();
         }
     }
-    }
+}
