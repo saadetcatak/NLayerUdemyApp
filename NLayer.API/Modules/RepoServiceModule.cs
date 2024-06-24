@@ -35,7 +35,7 @@ namespace NLayer.API.Modules
            ("Service")).AsImplementedInterfaces().InstancePerLifetimeScope();
 
 
-            builder.RegisterType<ProductServiceWithCacging>().As<IProductService>();
+            //builder.RegisterType<ProductServiceWithCacging>().As<IProductService>();
         }
     }
 }

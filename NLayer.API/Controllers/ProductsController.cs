@@ -24,11 +24,12 @@ namespace NLayer.API.Controllers
             _service = productService;
         }
 
-        //[HttpGet("[GetProdutcsWithCategory]")]
-        //public async Task<IActionResult> GetProdutcsWithCategory()
-        //{
-        //    return CreateActionResult(await _service.GetProductsWithCategory());
-        //}
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetProdutcsWithCategory()
+        {
+            return CreateActionResult(await _service.GetProductsWithCategory());
+        }
 
         [HttpGet]
         public async Task<IActionResult> All()
